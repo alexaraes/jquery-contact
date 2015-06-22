@@ -5,13 +5,13 @@ $name = $('#name');
 $email = $('#email');
 $website = $('#website');
 $message = $('#message');
-$nameEr = $('.nameEr');
-$emailEr = $('.emailEr');
-$webEr = $('.webEr');
-$msgEr = $('.msgEr');
+$nameError = $('.nameError');
+$emailError = $('.emailError');
+$webError = $('.webError');
+$msgError = $('.msgError');
 
 
-errorMsg = [$nameEr, $emailEr, $webEr, $msgEr];
+errorMsg = [$nameError, $emailError, $webError, $msgError];
 input = [$name,$email,$website,$message];
 
 $btn.on('click', check);
@@ -25,10 +25,11 @@ function check(e){
 	for(var i = 0; i < input.length; i++){
 
 		if(validator.isNull(input[i].val())){
-			console.log('true');
+			
 			e.preventDefault();
+
 			errorMsg[i].show();
-			input[i].css('border-left', '3px solid red');
+			input[i].css('border', '3px solid red');
 		}
 	}
 
@@ -36,20 +37,19 @@ function check(e){
 	if(checkEmail(e) && checkSite(e)){
 
 		if(validator.isNull($name) && validator.isNull($message) ){
-			$nameEr.show();
+			$nameError.show();
 			$msg.show();
 			e.preventDefault();
 		}
 		else if(validator.isNull($name)){
-			$nameEr.show();
+			$nameError.show();
 			e.preventDefault();
 		}
 		else if (validator.isNull($message)){
-			$msg.show();
+			$msgError.show();
 			e.preventDefault();	
 		}
 		else {
-
 			showMsg(e);
 		}
 		
@@ -64,8 +64,8 @@ function checkEmail(e){
 
 	if(!validator.isEmail($email.val())){
 		
-		$emailEr.show();
-		$email.css('border-left', '3px solid red');
+		$emailError.show();
+		$email.css('border', '3px solid red');
 		e.preventDefault();
 	
 	}
@@ -78,8 +78,8 @@ function checkSite(e){
 
 	if(!validator.isURL($website.val())){
 		e.preventDefault();
-		$webEr.show();
-		$website.css('border-left', '3px solid red');
+		$webError.show();
+		$website.css('border', '3px solid red');
 		
 	}
 	else {

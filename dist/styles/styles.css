@@ -36,10 +36,6 @@ button{
 	margin-top: 10px;
 }
 
-button:hover{
-	background-color: #78C04E;
-}
-
 form{
 
 	padding: 20px;
@@ -62,8 +58,7 @@ input, textarea{
 	width: 100%;
 	box-sizing: border-box;
 	/*color: #eee;*/
-	border-top:2px solid #eee;
-	border-left: 3px solid #18191F;
+	border: 2px solid gray;
 
 }
 
@@ -76,7 +71,7 @@ input{
 
 textarea{
 	padding-left: 10px;
-	height: 100px;
+	height: 140px;
 	border-bottom:2px solid #eee;
 	border-right:2px solid #eee;
 }
