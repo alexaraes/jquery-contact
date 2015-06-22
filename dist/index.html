@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="styles/styles.css">
+</head>
+<body>
+		<div class="container">
+			<form >
+				<h2>Contact Us</h2>
+
+				<label>Name</label>
+				<input id="name" placeholder="Sally Smith">
+				<div class="error nameEr" >Name cannot be left empty</div>
+
+				<label>Email</label>
+				<input id="email" placeholder="ssmith@gmail.com">
+				<div class="error emailEr">Email must have contain an '@'</div>
+
+				<label>Website</label>
+				<input id="website" placeholder="http://mssmith.net">
+				<div class="error webEr">Website must start with http://</div>
+
+				<label>Message</label>
+				<textarea type="submit" id="message" placeholder="A friendly message..."></textarea>
+				<div class="error msgEr">Message cannot be left empty</div>
+
+				<button type="submit">Submit</button>
+				<div id="empty"></div>
+			</form>
+		</div>
+
+<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="bower_components/validator-js/validator.min.js"></script>
+<script type="text/javascript" src="scripts/main.js"></script>
+</body>
+</html>
