@@ -27,6 +27,7 @@ $(document).ready(function(){
 
 				errorMsg[i].show();
 				input[i].css('border-left', '3px solid red');
+				console.log('1');
 			}
 		}
 
@@ -35,27 +36,32 @@ $(document).ready(function(){
 			$emailEr.show();
 			$email.css('border-left', '3px solid red');
 			e.preventDefault();
+			console.log('2');
 		}
-		else if (!validator.isURL($website.val())){
+		else if (!validator.isURL($website.val(), {require_protocol: true})){
 
 			$webEr.show();
 			$website.css('border-left', '3px solid red');
 			e.preventDefault();
+			console.log('3');
 		}
-		else if (!$name){
+		else if (!$name.val()){
 
 			$nameEr.show();
 			e.preventDefault();
+			console.log('4');
 		}
-		else if (!$message){
+		else if (!$message.val()){
 
 			$msgEr.show();
 			e.preventDefault();
+			console.log('5');
 		}
 		else {
 
 			showMsg(e);
 			e.preventDefault();
+			console.log('6');
 		}
 
 	}
@@ -80,7 +86,7 @@ $(document).ready(function(){
 		}
 	};
 
-	for (var i=0; i<input.length; i++) {
-		check(input[i])
-	};
+	// for (var i=0; i<input.length; i++) {
+	// 	check(input[i])
+	// };
 });
