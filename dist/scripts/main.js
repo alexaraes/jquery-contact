@@ -1,109 +1,86 @@
 $(document).ready(function(){
 
-$btn = $('button');
-$name = $('#name');
-$email = $('#email');
-$website = $('#website');
-$message = $('#message');
-$nameError = $('.nameError');
-$emailError = $('.emailError');
-$webError = $('.webError');
-$msgError = $('.msgError');
+	$btn = $('button');
+	$name = $('#name');
+	$email = $('#email');
+	$website = $('#website');
+	$message = $('#message');
+	$nameEr = $('.nameEr');
+	$emailEr = $('.emailEr');
+	$webEr = $('.webEr');
+	$msgEr = $('.msgEr');
 
+	errorMsg = [$nameEr, $emailEr, $webEr, $msgEr];
+	input = [$name,$email,$website,$message];
 
-errorMsg = [$nameError, $emailError, $webError, $msgError];
-input = [$name,$email,$website,$message];
+	$btn.on('click', check);
 
-$btn.on('click', check);
+	function check(e){
 
-function check(e){
-	e.preventDefault();
+		clearErrors();
 
-	clearErrors();
-	console.log(input[0].val());
+		e.preventDefault();
 
-	for(var i = 0; i < input.length; i++){
+		for (var i = 0; i < input.length; i++){
 
-		if(validator.isNull(input[i].val())){
-			
-			e.preventDefault();
+			if (validator.isNull(input[i].val())){
 
-			errorMsg[i].show();
-			input[i].css('border', '3px solid red');
+				errorMsg[i].show();
+				input[i].css('border-left', '3px solid red');
+			}
 		}
-	}
 
-	
-	if(checkEmail(e) && checkSite(e)){
+		if (!validator.isEmail($email.val())){
 
-		if(validator.isNull($name) && validator.isNull($message) ){
-			$nameError.show();
-			$msg.show();
+			$emailEr.show();
+			$email.css('border-left', '3px solid red');
 			e.preventDefault();
 		}
-		else if(validator.isNull($name)){
-			$nameError.show();
+		else if (!validator.isURL($website.val())){
+
+			$webEr.show();
+			$website.css('border-left', '3px solid red');
 			e.preventDefault();
 		}
-		else if (validator.isNull($message)){
-			$msgError.show();
-			e.preventDefault();	
+		else if (!$name){
+
+			$nameEr.show();
+			e.preventDefault();
+		}
+		else if (!$message){
+
+			$msgEr.show();
+			e.preventDefault();
 		}
 		else {
+
 			showMsg(e);
+			e.preventDefault();
 		}
-		
+
 	}
-	else {
+
+	function showMsg(e){
+
 		e.preventDefault();
-	}
 
-}
+		$('form').find('*').hide();
+		$('#thankYou').html('<p>Thanks for contacting us ' +$name.val()+ '. We will throw your message in the trash shortly. </p>');
+		$('#thankYou').show();
 
-function checkEmail(e){
-
-	if(!validator.isEmail($email.val())){
 		
-		$emailError.show();
-		$email.css('border', '3px solid red');
-		e.preventDefault();
-	
-	}
-	else{
-		return true
-	}
-}
+	};
 
-function checkSite(e){
+	function clearErrors () {
 
-	if(!validator.isURL($website.val())){
-		e.preventDefault();
-		$webError.show();
-		$website.css('border', '3px solid red');
-		
-	}
-	else {
-		return true
-	}
-}
+		for(var i =0; i <errorMsg.length; i++){
 
-function showMsg(e){
+			errorMsg[i].hide();
+			input[i].css('border-left', '3px solid #18191F');
+		}
+	};
 
-	e.preventDefault();
-	$('form').find('*').hide();
-	$('#empty').html('<p>Thanks for contacting us ' +$name.val()+ '. Your information will be used to steal your organs. </p>');
-	$('#empty').show();
-
-	
-}	
-
-function clearErrors () {
-
-	for(var i =0; i <errorMsg.length; i++){
-
-		errorMsg[i].hide();
-		input[i].css('border-left', '3px solid #18191F');
-	}
-}
-
+	for (var i=0; i<input.length; i++) {
+		check(input[i])
+	};
 });
